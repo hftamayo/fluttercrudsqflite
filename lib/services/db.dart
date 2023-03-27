@@ -16,4 +16,21 @@ class SQLService {
       await createTables(fluttertodo);
     });
   }
+
+  static Future<int> createData(String title, String? desc) async {
+    final db = await SQLHelper.db();
+
+    final data = {'title': title, 'desc': desc};
+    final id = await db.insert('data', data,
+        ConflictAlgorithm: sql.ConflictAlgorithm.replace);
+
+    return id;
+  }
+
+  static Future<List<Map<String, dynamic>>> getAllData() async {
+    final db = await SQLHelper.db();
+    return db.query('data', orderBy: 'id');
+  }
+
+  static Future<List<Map<String, dynamic>>> getSingleData(int id) async {}
 }
