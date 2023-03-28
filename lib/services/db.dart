@@ -32,5 +32,27 @@ class SQLService {
     return db.query('data', orderBy: 'id');
   }
 
-  static Future<List<Map<String, dynamic>>> getSingleData(int id) async {}
+  static Future<List<Map<String, dynamic>>> getSingleData(int id) async {
+    final db = await SQLHelper.db();
+    return db.query('data', where: "id = ?", whereArgs: [id], limit: 1);
+  }
+
+  static Future<int> updateData(int id, String title, String? desc) async {
+    final db = await SQLHelper.db();
+    final data = {
+      'title': title,
+      'desc': desc,
+      'createdAt': DateTime.now().toString()
+    };
+    final result =
+        await db.update('data', data, where: "id = ?", whereArgs: [id]);
+    return result;
+  }
+
+  static Future<void> deleteData(int id) async {
+    final db = await SQLHelper.db();
+    try {
+      await db.delete('data', where: "id = ?", whereArgs: [id]);
+    } catch (e) {}
+  }
 }
