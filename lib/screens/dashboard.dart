@@ -25,9 +25,6 @@ class _DashBoardState extends State<DashBoard> {
     _refreshData();
   }
 
-  final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _descController = TextEditingController();
-
   Future<void> _addData() async {
     await SQLService.createData(_titleController.text, _descController.text);
     _refreshData();
@@ -41,12 +38,27 @@ class _DashBoardState extends State<DashBoard> {
 
   void _deleteData(int id) async {
     await SQLService.deleteData(id);
-    ScaffoldMessenger.of(context)
-        .showSnackBar(const SnackBar(content: Text("Data deleted")));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        backgroundColor: Colors.redAccent, content: Text("Data deleted")));
+    _refreshData();
   }
+
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _descController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+        backgroundColor: const Color(0xFFECEAF4),
+        appBar: AppBar(
+          title: const Text("CRUD Operations"),
+        ),
+        body: _isLoading
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : ListView.builder(
+                itemBuilder: (context, index) => const Card(),
+              ));
   }
 }
