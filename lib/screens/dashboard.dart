@@ -78,6 +78,7 @@ class _DashBoardState extends State<DashBoard> {
             SizedBox(height: 10),
             TextField(
               controller: _descController,
+              maxLines: 4,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "Description",
@@ -119,7 +120,8 @@ class _DashBoardState extends State<DashBoard> {
               ),
             ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (() => showBottomSheet(context: context, builder: builder)),
+        onPressed: () => showBottomSheet(null),
+        child: const Icon(Icons.add),
       ),
     );
   }
