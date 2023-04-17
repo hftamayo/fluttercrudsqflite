@@ -53,6 +53,41 @@ class _DashBoardState extends State<DashBoard> {
       _titleController.text = existingData['title'];
       _descController.text = existingData['desc'];
     }
+
+    showModalBottomSheet(
+      elevation: 5,
+      isScrollControlled: true,
+      context: context,
+      builder: (_) => Container(
+        padding: EdgeInsets.only(
+            top: 30,
+            left: 15,
+            right: 15,
+            bottom: MediaQuery.of(context).viewInsets.bottom + 50),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            TextField(
+              controller: _titleController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: "Title",
+              ),
+            ),
+            SizedBox(height: 10),
+            TextField(
+              controller: _descController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: "Description",
+              ),
+            ),
+            SizedBox(height: 10),
+          ],
+        ),
+      ),
+    );
   }
 
   @override
