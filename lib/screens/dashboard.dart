@@ -144,6 +144,7 @@ class _DashBoardState extends State<DashBoard> {
                       ),
                     ),
                   ),
+                  subtitle: Text(_allData[index]['desc']),
                 ),
               ),
             ),
