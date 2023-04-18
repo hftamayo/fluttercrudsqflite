@@ -149,10 +149,14 @@ class _DashBoardState extends State<DashBoard> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            showBottomSheet(_allData[index]['id']);
+                          },
                           icon: Icon(Icons.edit, color: Colors.indigo)),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            _deleteData(_allData[index]['id']);
+                          },
                           icon: Icon(Icons.delete, color: Colors.redAccent)),
                     ],
                   ),
