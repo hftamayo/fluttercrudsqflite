@@ -145,6 +145,14 @@ class _DashBoardState extends State<DashBoard> {
                     ),
                   ),
                   subtitle: Text(_allData[index]['desc']),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                          onPressed: () {},
+                          icon: Icon(Icons.edit, color: Colors.indigo))
+                    ],
+                  ),
                 ),
               ),
             ),
