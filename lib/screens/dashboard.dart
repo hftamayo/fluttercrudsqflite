@@ -150,7 +150,10 @@ class _DashBoardState extends State<DashBoard> {
                     children: [
                       IconButton(
                           onPressed: () {},
-                          icon: Icon(Icons.edit, color: Colors.indigo))
+                          icon: Icon(Icons.edit, color: Colors.indigo)),
+                      IconButton(
+                          onPressed: () {},
+                          icon: Icon(Icons.delete, color: Colors.redAccent)),
                     ],
                   ),
                 ),
