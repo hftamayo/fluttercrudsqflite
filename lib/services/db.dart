@@ -21,7 +21,7 @@ class SQLService {
     final db = await SQLService.db();
 
     final data = {'title': title, 'desc': desc};
-    final id = await db.insert('data', data,
+    final id = await db.insert('tasks', data,
         conflictAlgorithm: sql.ConflictAlgorithm.replace);
 
     return id;
@@ -29,12 +29,12 @@ class SQLService {
 
   static Future<List<Map<String, dynamic>>> getAllData() async {
     final db = await SQLService.db();
-    return db.query('data', orderBy: 'id');
+    return db.query('tasks', orderBy: 'id');
   }
 
   static Future<List<Map<String, dynamic>>> getSingleData(int id) async {
     final db = await SQLService.db();
-    return db.query('data', where: "id = ?", whereArgs: [id], limit: 1);
+    return db.query('tasks', where: "id = ?", whereArgs: [id], limit: 1);
   }
 
   static Future<int> updateData(int id, String title, String? desc) async {
@@ -45,14 +45,14 @@ class SQLService {
       'createdAt': DateTime.now().toString()
     };
     final result =
-        await db.update('data', data, where: "id = ?", whereArgs: [id]);
+        await db.update('tasks', data, where: "id = ?", whereArgs: [id]);
     return result;
   }
 
   static Future<void> deleteData(int id) async {
     final db = await SQLService.db();
     try {
-      await db.delete('data', where: "id = ?", whereArgs: [id]);
+      await db.delete('tasks', where: "id = ?", whereArgs: [id]);
     } catch (e) {}
   }
 }
